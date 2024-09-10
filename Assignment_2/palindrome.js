@@ -120,4 +120,4 @@ console.log(longestCommonPrefix(["dog", "racecar", "car"])); // ""
 console.log(longestCommonPrefix(["apple", "banana", "cherry"])); // ""
 
 
-module.exports = { longestCommonPrefix, countPalindromes, removeDuplicates, reverse, isPalindrome };
+module.exports = { longestCommonPrefix, countPalindromes, removeDuplicates, reverse, isPalindrome , anagrams};

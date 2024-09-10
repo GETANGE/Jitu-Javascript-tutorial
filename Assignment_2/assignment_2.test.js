@@ -1,5 +1,7 @@
 const isPalindrome = require('./palindrome')
 const longestCommonPrefix = require('./palindrome')
+const isAnagram = require('./palindrome')
+const reverse = require('./palindrome');
 
 describe('Palindrome Tests', () => {
     test('Should be able to check if a string is a palindrome', () => {
@@ -38,3 +40,20 @@ describe('longestCommonPrefix', () => {
         expect(longestCommonPrefix.longestCommonPrefix(["a", "b", "c"])).toBe("");
     });
 });
+
+describe("Anagram Tests", () => {
+    test("should return true for anagrams", () => {
+        expect(isAnagram.anagrams("listen", "silent")).toBe(true);
+        expect(isAnagram.anagrams("hello", "world")).toBe(false);
+        expect(isAnagram.anagrams("apple", "banana")).toBe(false);
+        expect(isAnagram.anagrams("listen", "silent")).toBe(true);
+    });
+})
+
+describe("Should be able to reverse a string", () => {
+    test("should reverse a string", () => {
+        expect(reverse.reverse("hello world")).toBe("dlrow olleh");
+        expect(reverse.reverse("programming")).toBe("gnimmargorp");
+        expect(reverse.reverse("abcd")).toBe("dcba");
+    });
+})
