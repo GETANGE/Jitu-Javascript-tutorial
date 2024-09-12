@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects Mapping</title>
+</head>
+<style>
+    table, th, td {
+        border:1px solid black;
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+        vertical-align: top;
+    }
+    h1{
+        color: red;
+    }
+</style>
+<body>
+
+        <h1 >Objects Mapping</h1>
+        <table id="objectsTable">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+
+<script>
+// Product data
+const product = async function () {
+    const url = "https://myproductsendpoint.free.beeceptor.com/api/v1/products";
+
+    try {
+        const result = await fetch(url);
+        
+        // Check if the request was successful
+        if (!result.ok) {
+            throw new Error(`HTTP error! status: ${result.status}`);
+        }
+        
+        const data = await result.json();
+        console.log(data);
+
+        // Populate the table with fetched data
+        populateTable(data);
+
+    } catch (error) {
+        console.error('Error fetching data:', error); 
+    }
+};
+
+// Function to insert product data into the table
+function populateTable(products) {
+    const tableBody = document.querySelector("#objectsTable tbody");
+
+    products.forEach(product => {
+        const row = document.createElement("tr");
+        
+        row.innerHTML = `
+            <td>${product.id}</td>
+            <td>${product.name}</td>
+            <td>${product.category}</td>
+            <td>${product.description}</td>
+            <td>${product.price}</td>
+            <td>${product.stock}</td>
+        `;
+        
+        tableBody.appendChild(row);
+    });
+}
+product();
+</script>
+
+</body>
+</html>
