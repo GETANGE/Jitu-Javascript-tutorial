@@ -1,4 +1,4 @@
-# Weekly Report (Week Ending: 06/9/2024 -20/9/2024) 🚀
+# Weekly Report (Week between: 06/9/2024 -20/9/2024) 🚀
 
 ## Overview 📚
 This week’s training was focused on deepening my understanding of **JavaScript** 🖥️ and sharpening my **communication skills** 🗣️. The sessions were productive, allowing me to grasp various JS concepts like **strings**, **functions**, and **version control**. Additionally, there was a strong emphasis on understanding **client objectives** 🎯 and communicating effectively in challenging projects.
