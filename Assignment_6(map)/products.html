@@ -4,160 +4,440 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API Fetching</title>
-</head>
     <style>
-        * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
 
-    body{
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        font-family: "Barlow Semi Condensed", sans-serif;
-        background-color: hsl(212, 45%, 89%); 
-    }
+            body{
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                font-family: "Barlow Semi Condensed", sans-serif;
+                background-color: hsl(212, 45%, 89%); 
+            }
 
-    .main-container{
-        width: 100%;
-        height:100vh;
-        text-align: center;
-        margin: 0 auto;
-        justify-content: center;
-        align-items: center;
-    }
+            .main-container{
+                width: 100%;
+                height:100vh;
+                text-align: center;
+                margin: 0 auto;
+                justify-content: center;
+                align-items: center;
+            }
 
-    .container {
-        display: grid;
-        gap: 10px;
-        padding: 10px;
-        grid-template-columns: repeat(4, 2fr); 
-        grid-template-rows: max-content;
-        padding:0 200px 0 200px;
-        margin-top:20px;
-    }
+            .container {
+                display: grid;
+                gap: 10px;
+                padding: 10px;
+                grid-template-columns: repeat(4, 1fr); 
+                grid-template-rows: max-content;
+                padding:0 200px 0 200px;
+                margin-top:20px;
+            }
 
-    .main {
-        text-align: center;
-        font-size: 20px;
-        border-radius: 8px;
-        width: 100%;
-        text-align: start;
-        align-items: stretch;
-    }
+            .main , .cart-item{
+                text-align: center;
+                font-size: 20px;
+                border-radius: 8px;
+                width: 100%;
+                text-align: start;
+                align-items: stretch;
+            }
 
-    .main img {
-        width: 100%;
-        height: 150px;
-        object-fit: cover;
-    }
+            .main img, .cart-item img {
+                width: 100%;
+                height: 150px;
+                object-fit: cover;
+            }
 
-    .main button {
-        background-color: darkblue;
-        color: white;
-        padding: 10px 30px 10px 30px;
-        border: 2px solid black;
-        cursor: pointer;
-        margin-top: 10px;
-    }
+            .main button {
+                background-color: darkblue;
+                color: white;
+                padding: 10px 30px 10px 30px;
+                border: 2px solid black;
+                cursor: pointer;
+                margin-top: 10px;
+            }
 
-    .info{
-        width: 100%;
-        border:1px solid black;
-        text-align: center;
-    }
+            .info, .info-cart{
+                width: 100%;
+                border:1px solid black;
+                text-align: center;
+            }
+
+            button {
+                padding: 6px 12px;
+                font-size: 14px;
+                border: none;
+                cursor: pointer;
+                border-radius: 4px;
+                margin: 5px;
+                transition: background-color 0.3s ease;
+            }
+
+            .quantity-container button {
+                background-color: #f0f0f0;
+                color: #333;
+            }
+
+            .quantity-container button:hover {
+                background-color: #ddd;
+            }
+
+            .quantity-container span {
+                font-weight: bold;
+                margin: 0 10px;
+            }
+
+            .delete-button {
+                background-color: #ff4d4d;
+                color: white;
+                padding: 6px 15px;
+            }
+
+            .delete-button:hover {
+                background-color: #ff3333;
+            }
+
+            .cart-item {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 15px;
+                margin-bottom: 10px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                background-color: #f9f9f9;
+            }
+
+            .info-cart {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+                margin-left: 15px;
+            }
+
+            .cart-item img {
+                width: 100px;
+                height: auto;
+                border-radius: 8px;
+            }
+
+            .quantity-container {
+                display: flex;
+                align-items: center;
+            }
+
+            .price {
+                margin-top: 10px;
+                font-weight: bold;
+                color: #28a745;
+            }
+
+            .edit-button {
+                background-color: #007bff;
+                color: white;
+                padding: 6px 15px;
+                margin-left: 10px;
+                border-radius: 4px;
+            }
+
+            .edit-button:hover {
+                background-color: #0056b3;
+            }
+
+            .edit-form {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 20px;
+                padding: 15px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                background-color: #f9f9f9;
+            }
+
+            .edit-form input {
+                padding: 8px;
+                font-size: 14px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+            .edit-form button {
+                background-color: #28a745;
+                color: white;
+                border: none;
+                padding: 10px;
+                cursor: pointer;
+                border-radius: 4px;
+                transition: background-color 0.3s ease;
+            }
+
+            .edit-form button:hover {
+                background-color: #218838;
+            }
+            
     </style>
-
+</head>
 <body>
-<div class="main-container">
-    <h1 style="margin-top: 80px;">Product Page</h1>
-    <label >Filter by Price:</label>
-    <select id="priceFilter">
-        <option value="all">All</option>
-        <option value="low">Below 50</option>
-        <option value="high">Above 50</option>
-    </select>
-    <div class="container" id="container">
-
+    <div class="main-container">
+        <h1 style="margin-top: 80px;">Product Page</h1>
+        <label>Filter by Price:</label>
+        <select id="priceFilter">
+            <option value="all">All</option>
+            <option value="low">Below 50</option>
+            <option value="high">Above 50</option>
+        </select>
+    
+        <div class="container" id="container"></div>
+        
+        <!-- Cart section -->
+        <h2 style="margin-top: 40px;">Cart Items</h2>
+        <div class="container" id="cartContainer">
+            <!-- Clicked items will be displayed here -->
+        </div>
     </div>
-</div>
-</body>
+    
+    <script>
+        let events = []; // will store the items to be filtered.
+        let cartProducts = []; // will store items in the cart
 
-<script>
-    let events = []; // will store the items to be filtered.
+        // Function to display events
+        const displayContent = function (eventsToDisplay) {
+            const container = document.getElementById("container");
+            container.innerHTML = "";
 
-    // Function to display events
-    const displayContent =function (eventsToDisplay){
-        const container = document.getElementById("container");
-        container.innerHTML = "";
+            eventsToDisplay.forEach(event => {
+                const card = document.createElement("div");
+                card.className = "main";
+                container.appendChild(card);
 
-        eventsToDisplay.forEach(event => {
-            const card = document.createElement("div");
-            card.className = "main";
-            container.appendChild(card);
+                const img = document.createElement('img');
+                img.src = event.imageUrl;
+                card.appendChild(img);
 
-            // Create the image element
-            const img = document.createElement('img');
-            img.src = event.imageUrl;
-            card.appendChild(img);
+                const info = document.createElement('div');
+                info.className = "info";
+                card.appendChild(info);
 
-            const info = document.createElement('div');
-            info.className = "info";
-            card.appendChild(info);
+                const title = document.createElement('h3');
+                title.textContent = event.title;
+                info.appendChild(title);
 
-            // Create the title element
-            const title = document.createElement('h3');
-            title.textContent = event.title;
-            info.appendChild(title);
+                const date = document.createElement('p');
+                date.textContent = event.date;
+                info.appendChild(date);
 
-            // Create the date element
-            const date = document.createElement('p');
-            date.textContent = event.date;
-            info.appendChild(date);
+                const company = document.createElement('p');
+                company.textContent = event.company;
+                info.appendChild(company);
 
-            // Create the company and price element
-            const company = document.createElement('p');
-            company.textContent = event.company;
-            info.appendChild(company);
+                const price = document.createElement('p');
+                price.textContent = `Ksh ${event.price}`;
+                info.appendChild(price);
 
-            const price = document.createElement('p');
-            price.textContent = (`Ksh ${event.price}`);
-            info.appendChild(price);
+                const button = document.createElement('button');
+                button.textContent = 'Add to Cart';
+                button.className = 'addProduct';
+                info.appendChild(button);
 
-            // Create the button
-            const button = document.createElement('button');
-            button.textContent = 'Buy Now';
-            info.appendChild(button);
-        });
+                button.addEventListener('click', () => {
+                    addProductToCart(event); // Call the function to add the product to the cart
+                });
+            });
+        };
+
+// Function to add products to the cart
+const addProductToCart = function (product) {
+    const cartContainer = document.getElementById('cartContainer');
+
+    // Check if the product already exists in the cart
+    const existingProductIndex = cartProducts.findIndex(item => item.id === product.id);
+
+    if (existingProductIndex !== -1) {
+        // If the product already exists, increment the quantity
+        cartProducts[existingProductIndex].quantity += 1;
+    } else {
+        // If the product is new, set its quantity to 1 and add it to the cart
+        product.quantity = 1;
+        cartProducts.push(product);
     }
 
-    fetch("https://run.mocky.io/v3/cc2a23ed-67af-453a-89e7-a48bf18405f3")
-    .then((res) => res.json())
-    .then((data) => {
-        events = data;
-        displayContent(events); // Call the function to display the events initially
-    })
-    .catch(error => console.error('Error fetching data:', error));
+    // Clear the cart container and re-render items
+    updateCart();
+};
 
+// Function to render the cart
+const updateCart = function() {
+    const cartContainer = document.getElementById('cartContainer');
+    cartContainer.innerHTML = '';
 
-    // Add event listener for filtering by price
-    document.getElementById('priceFilter').addEventListener('change', () => {
-        const priceFilter = document.getElementById('priceFilter').value;
+    cartProducts.forEach((item, index) => {
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
 
-        let filteredEvents = events; 
+        const img = document.createElement('img');
+        img.src = item.imageUrl;
+        cartItem.appendChild(img);
 
-        if (priceFilter === 'low') {
-            filteredEvents = events.filter(event => event.price <= 50);
-        } else if (priceFilter === 'high') {
-            filteredEvents = events.filter(event => event.price > 50);
-        }
+        const info = document.createElement('div');
+        info.className = "info-cart";
+        cartItem.appendChild(info);
 
-        displayContent(filteredEvents);
+        const title = document.createElement('h4');
+        title.textContent = item.title;
+        info.appendChild(title);
+
+        const date = document.createElement('p');
+        date.textContent = item.date;
+        info.appendChild(date);
+
+        const company = document.createElement('p');
+        company.textContent = item.company;
+        info.appendChild(company);
+
+        const price = document.createElement('p');
+        price.className = 'price';
+        price.textContent = `Ksh ${item.price * item.quantity}`; // Total price based on quantity
+        info.appendChild(price);
+
+        // Create quantity control buttons and display inside the info container
+        const quantityContainer = document.createElement('div');
+        quantityContainer.className = 'quantity-container';
+
+        const decrementButton = document.createElement('button');
+        decrementButton.textContent = '-';
+        decrementButton.onclick = () => {
+            if (item.quantity > 1) {
+                cartProducts[index].quantity -= 1;
+            } else {
+                // If quantity is 1, remove the product from the cart
+                cartProducts.splice(index, 1);
+            }
+            updateCart();
+        };
+        quantityContainer.appendChild(decrementButton);
+
+        const quantityDisplay = document.createElement('span');
+        quantityDisplay.textContent = `Quantity: ${item.quantity}`;
+        quantityContainer.appendChild(quantityDisplay);
+
+        const incrementButton = document.createElement('button');
+        incrementButton.textContent = '+';
+        incrementButton.onclick = () => {
+            cartProducts[index].quantity += 1;
+            updateCart();
+        };
+        quantityContainer.appendChild(incrementButton);
+
+        // Append the quantity control to the info container
+        info.appendChild(quantityContainer);
+
+        // Create delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.className = 'delete-button';
+        deleteButton.onclick = () => {
+            // Remove the product entirely from the cart
+            cartProducts.splice(index, 1);
+            updateCart();
+        };
+        info.appendChild(deleteButton);
+
+        // Create edit button
+        const editButton = document.createElement('button');
+        editButton.textContent = 'Edit';
+        editButton.className = 'edit-button';
+        editButton.onclick = () => {
+            editProduct(index); // Call the edit function with the product index
+        };
+        info.appendChild(editButton);
+
+        // Append the new cart item to the cart container
+        cartContainer.appendChild(cartItem);
     });
+};
 
-</script>
+// Function to edit product details
+const editProduct = function(index) {
+    // Get the product to edit
+    const product = cartProducts[index];
+
+    // Create a form for editing the product
+    const form = document.createElement('div');
+    form.className = 'edit-form';
+
+    const titleInput = document.createElement('input');
+    titleInput.type = 'text';
+    titleInput.value = product.title;
+    form.appendChild(titleInput);
+
+    const dateInput = document.createElement('input');
+    dateInput.type = 'date';
+    dateInput.value = product.date;
+    form.appendChild(dateInput);
+
+    const companyInput = document.createElement('input');
+    companyInput.type = 'text';
+    companyInput.value = product.company;
+    form.appendChild(companyInput);
+
+    const priceInput = document.createElement('input');
+    priceInput.type = 'number';
+    priceInput.value = product.price;
+    form.appendChild(priceInput);
+
+    const saveButton = document.createElement('button');
+    saveButton.textContent = 'Save';
+    saveButton.onclick = () => {
+        // Save the edited values to the product
+        product.title = titleInput.value;
+        product.date = dateInput.value;
+        product.company = companyInput.value;
+        product.price = parseFloat(priceInput.value);
+
+        // Re-render the cart with the updated product information
+        updateCart();
+
+        // Remove the form after saving
+        form.remove();
+    };
+    form.appendChild(saveButton);
+
+    // Append the form to the cart container
+    const cartContainer = document.getElementById('cartContainer');
+    cartContainer.appendChild(form);
+};
+
+        // Fetch data and initialize page
+        fetch("https://run.mocky.io/v3/3a705a03-36c0-4e14-b3f7-dd087c0ff697")
+            .then((res) => res.json())
+            .then((data) => {
+                events = data;
+                displayContent(events); // Call the function to display the events initially
+            })
+            .catch(error => console.error('Error fetching data:', error));
+
+        // Filter functionality
+        document.getElementById('priceFilter').addEventListener('change', () => {
+            const priceFilter = document.getElementById('priceFilter').value;
+
+            let filteredEvents = events; 
+
+            if (priceFilter === 'low') {
+                filteredEvents = events.filter(event => event.price <= 50);
+            } else if (priceFilter === 'high') {
+                filteredEvents = events.filter(event => event.price > 50);
+            }
+
+            displayContent(filteredEvents);
+        });
+    </script>
+</body>
 </html>
