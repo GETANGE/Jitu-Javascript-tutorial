@@ -4,6 +4,22 @@
 This week’s training was focused on deepening my understanding of **JavaScript** 🖥️ and sharpening my **communication skills** 🗣️. The sessions were productive, allowing me to grasp various JS concepts like **strings**, **functions**, and **version control**. Additionally, there was a strong emphasis on understanding **client objectives** 🎯 and communicating effectively in challenging projects.
 
 ---
+## Projects Done 🌴
+## Shopping Cart Application
+
+This project is a simple shopping cart application built with **HTML**, **CSS**, and **JavaScript**. It allows users to:
+
+- Add products to their cart.
+- Modify product quantities.
+- Edit product details directly within the cart.
+- Remove items from the cart.
+
+Key features include dynamic product rendering, real-time quantity management, price calculation updates, and an intuitive interface for user interaction. This project demonstrates fundamental **DOM manipulation** techniques and provides a seamless shopping experience.
+## Project 1
+![Screenshot from 2024-09-22 11-06-05](https://github.com/user-attachments/assets/ac8e64d4-9813-4979-9c88-bd5ee0dd042e)
+
+## Project 2
+![Screenshot from 2024-09-22 11-06-05](https://github.com/user-attachments/assets/7539a3c1-4460-49cc-b953-3bb6b2b042ef)
 
 ## Progress and Learnings ✨
 
