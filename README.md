@@ -19,7 +19,7 @@ Key features include dynamic product rendering, real-time quantity management, p
 ![Screenshot from 2024-09-22 11-06-05](https://github.com/user-attachments/assets/ac8e64d4-9813-4979-9c88-bd5ee0dd042e)
 
 ## Project 2
-![Screenshot from 2024-09-22 11-06-05](https://github.com/user-attachments/assets/7539a3c1-4460-49cc-b953-3bb6b2b042ef)
+![Screenshot from 2024-09-22 12-35-49](https://github.com/user-attachments/assets/2f3a9d52-80ca-4244-abc9-42b997f9c5cf)
 
 ## Progress and Learnings ✨
 
